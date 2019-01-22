@@ -7,7 +7,7 @@ require_relative 'lib/scrapper'
 @listmail = Scrapper.new
 @list = @listmail.get_townhall_urls
 def save_as_JSON
-	File.open("list.json","w") do |f|
+	File.open("/db/list.json","w") do |f|
     f.write(JSON.pretty_generate(@list))
 	end	
 end
@@ -16,10 +16,10 @@ def save_as_spreadsheet
 session.files.each do |file|
   	p file.title
 			end
-session.upload_from_file("list.json", "list.json", convert: false)
+session.upload_from_file("/db/list.json", "list.json", convert: false)
 end
 def save_as_csv
-CSV.open("list.csv", "w") do |csv|
+CSV.open("/db/list.csv", "w") do |csv|
   csv << @list
 	end	
 end
